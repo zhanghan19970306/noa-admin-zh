@@ -39,9 +39,15 @@ export default function({ $axios, redirect, store, app }) {
 
             // session失效删除登陆状态
             if (res.data.code === TIMEOUT_CODE) {
+<<<<<<< HEAD
                 app.$cookies.remove('X-Id')
                 app.$cookies.remove('X-Token')
                 app.$store.dispatch('setAuth', '')
+=======
+                // app.$cookies.remove('X-Id')
+                // app.$cookies.remove('X-Token')
+                // app.$store.dispatch('setAuth', '')
+>>>>>>> a4ebbd6d52e4d4c552e346b510b1652dee74b48c
             }
 
             return Promise.resolve(res)
