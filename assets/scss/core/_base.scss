@@ -1,0 +1,18 @@
+body{
+    background-color: $app-bg;
+    font: $font;
+}
+
+
+// 我们使用iconfont时候 使用的font-family
+[class*="#{$app-iconfont-pre}-icon-"],
+[class^=#{$app-iconfont-pre}-icon-]{
+    display: inline-block;
+    font-family: $app-iconfont !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
