@@ -1,0 +1,24 @@
+$a: top, right, bottom, left;
+
+@for $i from 0 through 10 {
+    .f-margin-#{$i * 5} { margin: 5px * $i !important; }
+    .f-padding-#{$i * 5} { padding: 5px * $i !important; }
+
+    @each $animal in $a {
+        .f-margin-#{$animal}-#{$i * 5} { margin-#{$animal}: 5px * $i !important; }
+        .f-padding-#{$animal}-#{$i *5} { padding-#{$animal}: 5px * $i !important; }
+    }
+}
+
+$b: left, center, right;
+@each $animal2 in $b {
+    .f-text-align-#{$animal2} { text-align: $animal2 !important; }
+}
+
+.f-white-space-pre-wrap {
+    white-space: pre-wrap;
+}
+
+.f-flex-1 {
+    flex: 1;
+}
