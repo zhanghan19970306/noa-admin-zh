@@ -1,13 +1,9 @@
 import * as elementLocale from '../plugins/element-ui/element-locale'
-<<<<<<< HEAD
 import {
     API_AUTH_INFO,
     API_AUTH_LOGOUT,
     API_AUTH_LOGIN
 } from '@/constant/api/platform/login'
-=======
-import { API_AUTH_INFO, API_AUTH_LOGOUT } from '@/constant/api/platform/login'
->>>>>>> a4ebbd6d52e4d4c552e346b510b1652dee74b48c
 import { API_LANG_LANGUAGE } from '@/constant/api/open/language'
 
 export default {
@@ -58,7 +54,6 @@ export default {
     },
 
     /**
-<<<<<<< HEAD
      * 登录逻辑
      */
     async login({ commit }, loginInfo) {
@@ -89,8 +84,6 @@ export default {
     },
 
     /**
-=======
->>>>>>> a4ebbd6d52e4d4c552e346b510b1652dee74b48c
      * 登出 清除一系列用户数据
      */
     async logout({ commit }, isUserOp) {
@@ -98,21 +91,12 @@ export default {
             if (isUserOp === true) {
                 await this.$axios.$get(API_AUTH_LOGOUT)
             }
-<<<<<<< HEAD
             commit('logout')
             this.$cookies.remove('X-Id')
             this.$cookies.remove('X-Token')
             return Promise.resolve()
         } catch (error) {
             return Promise.reject(error)
-=======
-             commit('logout')
-             this.$cookies.remove('X-Id')
-             this.$cookies.remove('X-Token')
-             return Promise.resolve()
-        } catch(error) {
-           return Promise.reject(error)
->>>>>>> a4ebbd6d52e4d4c552e346b510b1652dee74b48c
         }
     },
 
@@ -150,10 +134,5 @@ export default {
     setMenuStatus({ commit, state }, context) {
         commit('setMenuStatus', context)
         this.$cookies.set('menuStatus', state.menuStatus)
-<<<<<<< HEAD
     }
-=======
-    },
-
->>>>>>> a4ebbd6d52e4d4c552e346b510b1652dee74b48c
 }

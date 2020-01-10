@@ -24,11 +24,7 @@ export default () => ({
      * 菜单的一些状态
      * 这个地方可能随着布局的变化 要灵活变动
      * ps: 当我们没有使用element-ui自带的菜单组件的时候 我们就需要自己去干一套菜单点亮逻辑
-<<<<<<< HEAD
      *
-=======
-     * 
->>>>>>> a4ebbd6d52e4d4c552e346b510b1652dee74b48c
      */
     menuStatus: {
         isCollapse: false, // 是否折叠
