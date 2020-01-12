@@ -35,7 +35,7 @@
             @current-change="unitChange"
           />
         </el-aside>
-         <el-divider direction="vertical" />
+        <el-divider class="is-full" direction="vertical" />
         <el-main>
           <el-form :inline="true" :model="pageData" class="platform-content-search-form">
             <el-form-item :label="$t(`sys.manage.user.form.loginname`)">

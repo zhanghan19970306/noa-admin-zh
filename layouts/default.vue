@@ -1,20 +1,7 @@
 <template>
   <div :class="layoutObj">
     <div class="layout-aside">
-      <div class="layout-logo">
-        <img
-          v-show="!menuStatus.isCollapse"
-          class="layout-logo__logo"
-          src="~/assets/images/logo--white.svg"
-          alt="logo"
-        />
-        <img
-          v-show="menuStatus.isCollapse"
-          class="layout-logo__logo"
-          src="~/assets/images/logo--white--small.svg"
-          alt="logo"
-        />
-      </div>
+      <logo />
       <el-scrollbar class="layout-nav">
         <el-menu
           router
@@ -65,25 +52,28 @@
         </el-menu>
       </el-scrollbar>
     </div>
-    <div class="layout-header">
-      <collapse-btn />
-      <refresh-btn />
-      <breadcrumb />
-      <div class="layout-header__placeholder" />
-      <search />
-      <full-screen />
-      <help-btn />
-      <language />
-      <msg-center />
-      <user-center />
-    </div>
-    <div class="layout-main">
-      <nuxt />
+    <div class="layout-container">
+      <div class="layout-header">
+        <collapse-btn />
+        <refresh-btn />
+        <breadcrumb />
+        <div class="layout-header__placeholder" />
+        <search />
+        <full-screen />
+        <help-btn />
+        <language />
+        <msg-center />
+        <user-center />
+      </div>
+      <div class="layout-main">
+        <nuxt />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Logo from '@/components/layout/Logo'
 import CollapseBtn from '@/components/layout/CollapseBtn'
 import RefreshBtn from '@/components/layout/refreshBtn'
 import FullScreen from '@/components/layout/FullScreen'
@@ -97,6 +87,7 @@ import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
+    Logo,
     RefreshBtn,
     CollapseBtn,
     Breadcrumb,
@@ -131,6 +122,7 @@ $aside-width: 200px;
 $aside-width--collapse: 64px;
 $header-height: 52px;
 .layout {
+  
   &.is-asideCollapse {
     #{$name} {
       &-header {
@@ -170,27 +162,13 @@ $header-height: 52px;
 
   // 三大主体结构-主体
   &-main {
+    z-index: 103;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-top: $header-height;
     padding-left: $aside-width;
     transition: padding-left 0.3s ease-in-out;
-  }
-
-  // 侧栏中的logo
-  &-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: $header-height;
-    text-align: center;
-    border-bottom: 1px solid rgba(#333, 0.8);
-    &__logo {
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-    }
   }
 
   // 侧栏中的nav
