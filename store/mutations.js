@@ -45,6 +45,16 @@ export default {
     },
 
     /**
+     * 改变主体配置 ps: 混入式
+     */
+    setThemeConfig(state, payload) {
+        state.themeConfig = {
+            ...state.themeConfig,
+            ...payload
+        }
+    },
+
+    /**
      * 登出 ps: 直接清空用户登录凭证
      */
     logout(state) {

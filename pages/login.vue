@@ -1,7 +1,7 @@
 <template>
   <div class="pLogin">
     <header class="pLogin-header">
-      <img class="pLogin-header__logo" src="~/assets/images/logo.svg" alt="logo" />
+      <img class="pLogin-header__logo" src="~/assets/images/logo--dark.svg" alt="logo" />
     </header>
     <main class="pLogin-main">
       <div class="pLogin-container">

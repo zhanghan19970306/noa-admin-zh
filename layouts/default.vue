@@ -6,8 +6,8 @@
         <el-menu
           router
           :default-active="$route.path"
-          background-color="#3a3a4b"
-          text-color="#fff"
+          :background-color="navColor.bgColor"
+          :text-color="navColor.color"
           unique-opened
           :collapse="menuStatus.isCollapse"
         >
@@ -52,27 +52,31 @@
         </el-menu>
       </el-scrollbar>
     </div>
-    <div class="layout-container">
-      <div class="layout-header">
-        <collapse-btn />
-        <refresh-btn />
-        <breadcrumb />
-        <div class="layout-header__placeholder" />
-        <search />
-        <full-screen />
-        <help-btn />
-        <language />
-        <msg-center />
-        <user-center />
-      </div>
-      <div class="layout-main">
-        <nuxt />
-      </div>
+    <div class="layout-header">
+      <collapse-btn />
+      <refresh-btn />
+      <breadcrumb />
+      <div class="layout-header__placeholder" />
+      <search />
+      <full-screen />
+      <help-btn />
+      <language />
+      <msg-center />
+      <user-center />
+    </div>
+    <div class="layout-main">
+      <nuxt />
     </div>
   </div>
 </template>
 
 <script>
+import {
+  asideBgColorWhite,
+  asideColorWhite,
+  asideBgColorDark,
+  asideColorDark
+} from '../assets/scss/core/_var.scss'
 import Logo from '@/components/layout/Logo'
 import CollapseBtn from '@/components/layout/CollapseBtn'
 import RefreshBtn from '@/components/layout/refreshBtn'
@@ -100,11 +104,28 @@ export default {
   },
   computed: {
     ...mapGetters(['userMenus', 'userRoles']),
-    ...mapState(['menuStatus']),
+    ...mapState(['menuStatus', 'themeConfig']),
     layoutObj() {
       return {
         layout: true,
-        'is-asideCollapse': this.menuStatus.isCollapse
+        [`is-aside--${this.themeConfig.aside}`]: true,
+        [`is-header--${this.themeConfig.header}`]: true,
+        'is-aside--collapse': this.menuStatus.isCollapse
+      }
+    },
+    navColor() {
+      if (this.themeConfig.aside === 'dark') {
+        return {
+          color: asideColorDark,
+          bgColor: asideBgColorDark
+        }
+      }
+
+      if (this.themeConfig.aside === 'white') {
+        return {
+          color: asideColorWhite,
+          bgColor: asideBgColorWhite
+        }
       }
     }
   },
@@ -117,13 +138,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/core/var';
 $name: '.layout';
-$aside-width: 200px;
-$aside-width--collapse: 64px;
-$header-height: 52px;
 .layout {
-  
-  &.is-asideCollapse {
+  &.is-aside--collapse {
     #{$name} {
       &-header {
         left: $aside-width--collapse;
@@ -134,35 +152,81 @@ $header-height: 52px;
     }
   }
 
+  &.is-aside--white {
+    #{$name} {
+      &-aside {
+        background-color: $aside-bg-color-white;
+      }
+    }
+  }
+
+  &.is-aside--dark {
+    #{$name} {
+      &-aside {
+        background-color: $aside-bg-color-dark;
+      }
+    }
+  }
+
+  &.is-header--white {
+    #{$name} {
+      &-header {
+        color: $header-color-white;
+        background-color: $header-bg-color-white;
+      }
+    }
+  }
+
+  &.is-header--dark {
+    #{$name} {
+      &-header {
+        color: $header-color-dark;
+        background-color: $header-bg-color-dark;
+      }
+    }
+    /deep/ {
+      .collapse__btn,
+      .refresh__btn,
+      .fullScreen__btn,
+      .help__btn,
+      .language,
+      .search:not(.is-show),
+      .message,
+      .user {
+        &:hover {
+          background-color: rgba($header-color-white, 0.6);
+        }
+      }
+    }
+  }
+
   // 三大主体结构-侧栏
   &-aside {
     position: fixed;
-    z-index: 101;
+    z-index: 100;
     top: 0;
     bottom: 0;
     min-height: 100vh;
-    background-color: #3a3a4b;
-    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   }
+
   // 三大主体结构-顶栏
   &-header {
     position: fixed;
     z-index: 100;
     left: $aside-width;
     right: 0;
+    font-size: 16px;
     height: $header-height;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
     transition: left 0.3s ease-in-out;
     user-select: none;
-    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   }
 
   // 三大主体结构-主体
   &-main {
-    z-index: 103;
+    z-index: 99;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -171,7 +235,7 @@ $header-height: 52px;
     transition: padding-left 0.3s ease-in-out;
   }
 
-  // 侧栏中的nav
+  // 侧栏中的nav 外面那层滚动条组件需要的容器
   &-nav {
     user-select: none;
     height: calc(100vh - #{$header-height});

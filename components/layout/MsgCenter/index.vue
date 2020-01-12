@@ -201,8 +201,7 @@ export default {
 @import '../../../assets/scss/core/var';
 $name: '.message';
 #{$name} {
-  padding: 0;
-  color: #666;
+  color: inherit;
   font-size: 16px;
   height: $header-height;
   line-height: $header-height;

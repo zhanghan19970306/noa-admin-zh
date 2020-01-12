@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-dropdown @command="onCommand">
-      <div class="user">
+    <el-dropdown class="user" @command="onCommand">
+      <div class="user-main">
         <el-avatar :size="30" src="avatarUrl">
           <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
         </el-avatar>
@@ -22,20 +22,22 @@
       :visible.sync="layoutConfigDialogShow"
     >
       <el-divider>主题风格</el-divider>
+      <div class="config-list">
+        <span class="config-list__label">侧栏</span>
+        <el-radio-group v-model="asideTheme" size="mini">
+          <el-radio-button label="dark">暗色</el-radio-button>
+          <el-radio-button label="white">亮色</el-radio-button>
+        </el-radio-group>
+      </div>
+      <div class="config-list">
+        <span class="config-list__label">顶栏</span>
+        <el-radio-group v-model="headerTheme" size="mini">
+          <el-radio-button label="dark">暗色</el-radio-button>
+          <el-radio-button label="white">亮色</el-radio-button>
+        </el-radio-group>
+      </div>
 
       <el-divider>整体布局</el-divider>
-      <div class="config-list">
-        <span class="config-list__label">固定侧栏</span>
-        <el-switch v-model="value" />
-      </div>
-      <div class="config-list">
-        <span class="config-list__label">固定顶栏</span>
-        <el-switch v-model="value" />
-      </div>
-      <div class="config-list">
-        <span class="config-list__label">菜单开启手风琴模式</span>
-        <el-switch v-model="value" />
-      </div>
     </el-drawer>
   </div>
 </template>
@@ -51,9 +53,29 @@ export default {
     }
   },
   computed: {
-    ...mapState(['conf', 'userInfo']),
+    ...mapState(['conf', 'userInfo', 'themeConfig']),
     avatarUrl() {
       return this.conf.AppFileDomain + this.userInfo.avatar
+    },
+    headerTheme: {
+      get() {
+        return this.themeConfig.header
+      },
+      set(value) {
+        this.$store.dispatch('setThemeConfig', {
+          header: value
+        })
+      }
+    },
+    asideTheme: {
+      get() {
+        return this.themeConfig.aside
+      },
+      set(value) {
+        this.$store.dispatch('setThemeConfig', {
+          aside: value
+        })
+      }
     }
   },
   methods: {
@@ -86,16 +108,17 @@ export default {
 <style lang="scss" scoped>
 @import '../../../assets/scss/core/var';
 .user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #666;
-  font-size: 16px;
-  padding: 0 12px;
-  height: $header-height;
-  line-height: $header-height;
+  color: inherit;
   outline: none;
   cursor: pointer;
+  &-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 12px;
+    height: $header-height;
+    line-height: $header-height;
+  }
   &:hover {
     background-color: #f8f8f9;
   }

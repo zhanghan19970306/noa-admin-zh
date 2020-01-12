@@ -32,5 +32,13 @@ export default () => ({
         secondActiveIndex: '', // 二级菜单激活index
         thirdActiveIndex: '' // 三级菜单激活index
         //自定义字段...
+    },
+
+    /**
+     * 主题配置
+     */
+    themeConfig: {
+        aside: 'dark',
+        header: 'white'
     }
 })

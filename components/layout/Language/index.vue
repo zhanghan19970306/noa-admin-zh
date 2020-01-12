@@ -1,8 +1,6 @@
 <template>
-  <el-dropdown @command="onCommand">
-    <div class="language hover-effect">
-      <i class="noa-icon-language" />
-    </div>
+  <el-dropdown class="language" @command="onCommand">
+    <i class="noa-icon-language language__icon" />
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item
         :class="{
@@ -50,12 +48,14 @@ export default {
 <style lang="scss" scoped>
 @import '../../../assets/scss/core/var';
 .language {
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  height: $header-height;
+  color: inherit;
   outline: none;
   cursor: pointer;
+  &__icon {
+    padding: 0 12px;
+    height: $header-height;
+    line-height: $header-height;
+  }
   &:hover {
     background-color: #f8f8f9;
   }

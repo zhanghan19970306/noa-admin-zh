@@ -1,15 +1,27 @@
 <template>
   <div class="logo">
     <img
-      v-show="!menuStatus.isCollapse"
+      v-show="themeConfig.aside === 'dark' && !menuStatus.isCollapse"
       class="logo__logo"
       src="~/assets/images/logo--white.svg"
       alt="logo"
     />
     <img
-      v-show="menuStatus.isCollapse"
+      v-show="themeConfig.aside === 'dark' && menuStatus.isCollapse"
       class="logo__logo"
       src="~/assets/images/logo--white--small.svg"
+      alt="logo"
+    />
+    <img
+      v-show="themeConfig.aside === 'white' && !menuStatus.isCollapse"
+      class="logo__logo"
+      src="~/assets/images/logo--dark.svg"
+      alt="logo"
+    />
+    <img
+      v-show="themeConfig.aside === 'white' && menuStatus.isCollapse"
+      class="logo__logo"
+      src="~/assets/images/logo--dark--small.svg"
       alt="logo"
     />
   </div>
@@ -19,7 +31,7 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState(['menuStatus'])
+    ...mapState(['menuStatus', 'themeConfig'])
   }
 }
 </script>
@@ -32,11 +44,20 @@ export default {
   align-items: center;
   height: $header-height;
   text-align: center;
-  border-bottom: 1px solid rgba(#333, 0.8);
+  overflow: hidden;
+  width: $aside-width;
+  transition: width 0.3s ease-in-out;
   &__logo {
     display: block;
     max-width: 100%;
     max-height: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.is-aside--collapse {
+  .logo {
+    width: $aside-width--collapse;
   }
 }
 </style>

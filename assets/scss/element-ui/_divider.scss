@@ -1,6 +1,7 @@
 $name: '.el-divider';
 
 #{$name} {
+    // 不限高 作为竖形分割线
     &.is-full {
         height: auto;
     }

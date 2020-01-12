@@ -57,7 +57,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #666;
+  color: inherit;
   outline: none;
   cursor: pointer;
   &:not(.is-show):hover {
@@ -85,8 +85,9 @@ export default {
       padding-left: 0;
       padding-right: 0;
       box-shadow: none !important;
-      border-bottom: 1px solid #d9d9d9;
+      border: none;
       vertical-align: middle;
+      background-color: transparent;
     }
   }
   &.is-show {

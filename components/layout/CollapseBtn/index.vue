@@ -27,7 +27,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../../assets/scss/core/var';
 .collapse__btn {
-  color: #666;
   font-size: 16px;
   padding: 0 12px;
   height: $header-height;

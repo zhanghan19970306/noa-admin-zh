@@ -12,4 +12,26 @@ $app-iconfont-pre: 'noa';
 // 布局变量
 $aside-width: 200px;
 $aside-width--collapse: 64px;
+$aside-bg-color-white: #fff;
+$aside-color-white: #666;
+$aside-bg-color-dark: #3a3a4b;
+$aside-color-dark: #fff;
 $header-height: 52px;
+$header-bg-color-white: $aside-bg-color-white;
+$header-color-white: $aside-color-white;
+$header-bg-color-dark: $aside-bg-color-dark;
+$header-color-dark: $aside-color-dark;
+
+// 主题色 和 状态色
+$color-primary: #409eff;
+$color-success: #67c23a;
+$color-warning: #e6a23c;
+$color-danger: #f56c6c;
+$color-info: #909399;
+
+:export {
+    asideBgColorWhite: $aside-bg-color-white;
+    asideColorWhite: $aside-color-white;
+    asideBgColorDark: $aside-bg-color-dark;
+    asideColorDark: $aside-color-dark;
+}

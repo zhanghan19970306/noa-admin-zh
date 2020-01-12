@@ -58,9 +58,20 @@ export default {
 @import '../../../assets/scss/core/var';
 
 .breadcrumb {
+  color: inherit;
   padding: 0 12px;
   height: $header-height;
   line-height: $header-height;
+}
+
+/deep/ {
+  .el-breadcrumb__inner {
+    color: inherit;
+  }
+
+  .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+    color: inherit;
+  }
 }
 
 /* breadcrumb transition */

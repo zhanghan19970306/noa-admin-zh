@@ -2,7 +2,8 @@ import * as elementLocale from '../plugins/element-ui/element-locale'
 import {
     API_AUTH_INFO,
     API_AUTH_LOGOUT,
-    API_AUTH_LOGIN
+    API_AUTH_LOGIN,
+    API_AUTH_SET_THEME
 } from '@/constant/api/platform/login'
 import { API_LANG_LANGUAGE } from '@/constant/api/open/language'
 
@@ -44,6 +45,12 @@ export default {
                 commit('setAuth', token)
                 commit('setConf', conf)
                 commit('setUserInfo', userInfo)
+
+                // 如果用户有主题配置 同步主题配置
+                if (user.themeConfig) {
+                    const themeConfig = JSON.parse(user.themeConfig)
+                    commit('setThemeConfig', themeConfig)
+                }
             } catch {
                 // 确认清除一下用户信息
                 dispatch('logout')
@@ -134,5 +141,20 @@ export default {
     setMenuStatus({ commit, state }, context) {
         commit('setMenuStatus', context)
         this.$cookies.set('menuStatus', state.menuStatus)
+    },
+
+    /**
+     * 设置主体配置
+     *  先commit 然后state拿下所有的配置 存库
+     */
+    setThemeConfig({ commit, state }, context) {
+        commit('setThemeConfig', context)
+        try {
+            this.$axios.$post(API_AUTH_SET_THEME, {
+                themeConfig: JSON.stringify(state.themeConfig)
+            })
+        } catch (e) {
+            console.log(e)
+        }
     }
 }
