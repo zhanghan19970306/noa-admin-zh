@@ -68,7 +68,9 @@
     <div class="layout-header">
       <collapse-btn />
       <refresh-btn />
+      <breadcrumb />
       <div class="layout-header__placeholder" />
+      <search />
       <full-screen />
       <help-btn />
       <language />
@@ -89,17 +91,21 @@ import HelpBtn from '@/components/layout/HelpBtn'
 import Language from '@/components/layout/Language'
 import UserCenter from '@/components/layout/UserCenter'
 import MsgCenter from '@/components/layout/MsgCenter'
+import Search from '@/components/layout/Search'
+import Breadcrumb from '@/components/layout/Breadcrumb'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
     RefreshBtn,
     CollapseBtn,
+    Breadcrumb,
     FullScreen,
     HelpBtn,
     Language,
     UserCenter,
-    MsgCenter
+    MsgCenter,
+    Search
   },
   computed: {
     ...mapGetters(['userMenus', 'userRoles']),
@@ -159,6 +165,7 @@ $header-height: 52px;
     background-color: #fff;
     transition: left 0.3s ease-in-out;
     user-select: none;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   }
 
   // 三大主体结构-主体
