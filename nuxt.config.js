@@ -55,7 +55,7 @@ module.exports = {
      */
     buildModules: [
         // Doc: https://github.com/nuxt-community/dotenv-module
-        '@nuxtjs/dotenv',
+        ['@nuxtjs/dotenv', { filename: `.env.${process.env.NODE_ENV}` }],
         // Doc: https://zh.nuxtjs.org/faq/http-proxy
         '@nuxtjs/proxy'
     ],
