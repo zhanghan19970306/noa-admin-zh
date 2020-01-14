@@ -44,10 +44,7 @@ export function generatePathToMenus(data) {
             if (item.path.length === 4) {
                 menus[item.path] = []
             } else {
-                const pPath = item.path.slice(
-                    0,
-                    (item.path.length / 4 - 1) * 4
-                )
+                const pPath = item.path.slice(0, (item.path.length / 4 - 1) * 4)
                 if (menus[pPath]) {
                     menus[pPath].push(item)
                 } else {
@@ -57,4 +54,33 @@ export function generatePathToMenus(data) {
         }
     })
     return menus
+}
+
+/**
+ * 是否是手机端运行环境
+ */
+export function isMobile() {
+    let sUserAgent = navigator.userAgent.toLowerCase()
+    let bIsIpad = sUserAgent.match(/ipad/i) == 'ipad'
+    let bIsIphoneOs = sUserAgent.match(/iphone os/i) == 'iphone os'
+    let bIsMidp = sUserAgent.match(/midp/i) == 'midp'
+    let bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4'
+    let bIsUc = sUserAgent.match(/ucweb/i) == 'ucweb'
+    let bIsAndroid = sUserAgent.match(/android/i) == 'android'
+    let bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce'
+    let bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile'
+    if (
+        bIsIpad ||
+        bIsIphoneOs ||
+        bIsMidp ||
+        bIsUc7 ||
+        bIsUc ||
+        bIsAndroid ||
+        bIsCE ||
+        bIsWM
+    ) {
+        return true
+    } else {
+        return false
+    }
 }
