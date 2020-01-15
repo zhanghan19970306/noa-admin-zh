@@ -10,6 +10,7 @@
           :text-color="navColor.color"
           unique-opened
           :collapse="menuStatus.isCollapse"
+          @select="handleSelectMenu"
         >
           <template v-for="item in userMenus">
             <template v-if="item.url">
@@ -127,6 +128,11 @@ export default {
           bgColor: asideBgColorWhite
         }
       }
+    }
+  },
+  methods: {
+    handleSelectMenu(index, indexPath) {
+      console.log(index, indexPath)
     }
   },
   created() {

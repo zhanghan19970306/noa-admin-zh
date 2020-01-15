@@ -4,10 +4,5 @@
 
 
 <script>
-export default {
-  layout(info) {
-    console.log(info)
-    return 'default'
-  }
-}
+export default {}
 </script>
